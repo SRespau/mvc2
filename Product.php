@@ -13,12 +13,12 @@
     } 
      
     //Devuelve todos los productos
-    public static function all(){
+    public static function all(){ //static -> función que pertenece a la clase, no al objeto
         return Product::PRODUCTS; //Devolvemos de la clase product la constante PRODUCT. :: por ser estatico
     }        
      
     //Devuelve un producto en particular buscado por la clave del array
-    public function find($id){
+    public static function find($id){
         return Product::PRODUCTS[$id - 1];
     }
 
