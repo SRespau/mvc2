@@ -18,7 +18,7 @@
     }        
      
     //Devuelve un producto en particular buscado por la clave del array
-    public static function find($id){
+    public static function find($id){        
         return Product::PRODUCTS[$id - 1];
     }
 

@@ -27,22 +27,25 @@ class App{
     }else{
         $method = "index";
     }
+    //var_dump($arguments);
 
+    
     // Voy a cargar el controlador -> ProductController.php (o nombre de controlador que tengamos y nos manden)
-    $file = "app/controllers/$controllerName" . ".php";
+    $file = "../app/controllers/$controllerName" . ".php";
     //Verificamos si el fichero existe en la ruta enviada para llamar al controlador.
     if(file_exists($file)){
         require_once $file;// Si existe que lo cargue
+        
     }else{
         http_response_code(404);
-        die("No encontrado.");
+        die("Controlador no encontrado.");
     }
 
     //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este
     $controllerObject = new $controllerName; //$controllerName sera el nombre pasado con la letra mayuscula + Controller. Si el constructor es vacio no hace falta ()
     if(method_exists($controllerObject, $method)){
         $controllerObject->$method($arguments); //Si arguments esta vacio lo llamara vacio, si contiene algo lo llamara con argumentos
-
+        
     }else{
         http_response_code(404);
         die("No encontrado.");

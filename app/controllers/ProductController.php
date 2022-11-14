@@ -1,6 +1,8 @@
 <?php
 
-class Product{
+require_once "../Product.php"; //Esto de normal iria en models
+
+class ProductController{
 
     function __construct(){
         //Constructor vacio        
@@ -8,14 +10,15 @@ class Product{
 
     
     function index(){ //Por defecto se crean en public los metodos
-        $products = Product::all(); 
-        require("views/home.php");
-        // Metodo home de COntroller de mvc00
+        $products = Product::all();
+        require "../views/homeProduct.php";        
+        // Metodo home de Controller de mvc00
     }
 
-    function show(){
+    function show($arguments){
         $id = $_GET["id"];
         $product = Product::find($id);
-        require("views/show.php");
+        require("../views/showProduct.php");
     }
+    
 }//Fin clase
