@@ -1,14 +1,6 @@
 <?php
-    //echo "<h2> Contenido PRIVADO</h2>";
-
-    //Ir pensando en recurso/metodo/parametro
-    //  - Recurso: controlador
-    //  - Acción: metodos del controlador   $controlador->metodo();
-    //  - Parametros: parametros del metodo
+    //Importamos el creador de controladores generico y creamos un objeto para acceder a sus metodos.
 
     require_once "core/App.php";
 
     $app = new App();
-
-    
-

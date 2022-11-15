@@ -1,16 +1,17 @@
 <?php
 
-class LoginController{
+class LoginController {
 
     function __construct(){
-        //Controlador vacio
-    }
+
+    }//Fin constructor
 
     function index(){
-        echo "Lleva al index de loginController";
+        echo "Lleva al index de login";
     }
+    
+    /*function auth(){
+        $usuario = Login::all();
 
-    function show(){
-        echo "<br>Dentro de show de LoginController";
-    }
-}//Fin clase login
+    }*/
+}//Fin LoginController

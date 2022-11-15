@@ -3,17 +3,11 @@
 class HomeController{
 
     function __construct(){
-        echo "Este es el constructor de HomeController";
         //Constructor vacio
-    }    
-
-    function index(){
-        require "../views/home.php";
     }
 
-    function show(){
-        echo "<br>Dentro de show de HomeController";
-    }   
-
+    function index(){
+        echo "Aqui HomeController Index";
+    }
 
 }//Fin clase home
