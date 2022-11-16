@@ -1,4 +1,7 @@
 <?php
+
+//namespace App\Controllers; No hace falta porque está en el namespace global. Se pondria \Productn en ProductController
+
     //Fichero que simula el modelo con datos
     class Product{
         const PRODUCTS = [
