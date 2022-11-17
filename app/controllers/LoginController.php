@@ -7,7 +7,7 @@ class LoginController {
     }//Fin constructor
 
     function index(){
-        echo "Lleva al index de login";
+        require "../views/login/login.php";
     }
     
     /*function auth(){

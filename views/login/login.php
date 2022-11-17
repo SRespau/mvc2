@@ -4,25 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/default.css">
-  <style></style>
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
   <title>Login</title>
   <style> 
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    li {
-      float: left;
-    }
-
-    li a {
-      display: block;
-      padding: 8px;
-      background-color: #dddddd;
-    }
     fieldset {
         background-color: #eeeeee;
     }
@@ -40,10 +26,7 @@
   </style>
 </head>
 <body>
-  <?php
-      // Carga la cabecera de nuestra pagina donde aparecerá Inicio, Login y Logout
-    require_once('vistas/header.php');
-  ?>
+  <?php require __DIR__ . "/../../app/views/header.php" ?>
   
   <!-- Formulario para obtener los datos de usuario y contraseña por metodo post -->
   <!-- Mandará a la función autenticar de app.php -->
@@ -62,5 +45,7 @@
     </fieldset>
     
   </form>
+
+  <?php require __DIR__ . "/../../app/views/footer.php" ?>
 </body>
 </html>

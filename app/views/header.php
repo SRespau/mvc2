@@ -12,11 +12,11 @@
             id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
-                <li class="nav-item active"><a class="nav-link" href="/product">Product</a>
+                <li class="nav-item active"><a class="nav-link" href="/home/agenda">Agenda</a>
                 </li>
                 <li class="nav-item active"><a class="nav-link" href="/login">Login</a>
                 </li>
                 
         </div>
     </nav>
-    </header>
+</header>

@@ -7,7 +7,11 @@ class HomeController{
     }
 
     function index(){
-        echo "Aqui HomeController Index";
+        require "../views/indice.php";
+    }
+
+    function agenda(){
+        require "../views/agenda.php";
     }
 
 }//Fin clase home
