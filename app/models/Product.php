@@ -1,9 +1,15 @@
 <?php
 
-//namespace App\Controllers; No hace falta porque está en el namespace global. Se pondria \Productn en ProductController
+namespace App\Models;
 
-    //Fichero que simula el modelo con datos
-    class Product{
+use PDO;
+use Core\Model;
+
+require_once '../core/Conection.php';
+//namespace App\Controllers; No hace falta porque está en el namespace global. Se pondria \Product en ProductController
+
+    //Extendemos clase Model de conection
+    class Product extends Model{
         const PRODUCTS = [
             array(1, "Cortacesped"),
             array(2, "Pizarra"),
@@ -14,7 +20,7 @@
     function __construct(){
         //constructor vacio
     } 
-     
+    /* 
     //Devuelve todos los productos
     public static function all(){ //static -> función que pertenece a la clase, no al objeto
         return Product::PRODUCTS; //Devolvemos de la clase product la constante PRODUCT. :: por ser estatico
@@ -24,6 +30,22 @@
     public static function find($id){        
         return Product::PRODUCTS[$id - 1];
     }
+    */
+    public static function all(){
+        return Product::PRODUCTS; 
+    }
+    public static function find($id){
+        return Product::PRODUCTS[$id - 1]; 
+    }
+
+    public function delete(){
+         //TODO 
+    }
+
+    public function save(){
+         //TODO 
+    }
+
 
 
     }// FIN_CLASE

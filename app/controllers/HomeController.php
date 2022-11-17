@@ -10,7 +10,7 @@ class HomeController{
     }    
 
     function index(){
-        require "../views/home.php";
+        require "../app/views/home.php";
     }
 
     function show(){

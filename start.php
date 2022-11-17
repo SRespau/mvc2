@@ -14,7 +14,7 @@
     //  - Parametros: parametros del metodo
 
     require_once "../core/App.php"; //Importamos el fichero
-
+    
     $app = new \Core\App(); //usamos la clase
 
     

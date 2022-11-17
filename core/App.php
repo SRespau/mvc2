@@ -1,12 +1,14 @@
 <?php
 
 namespace Core;
+
 /*
     - Si la url no especifica ningun controlador (recurso) => asigno uno por defecto: home
     - Si la url no especifica ningun metodo => asigno por defecto: index
 */
 class App{
 
+    
     function __construct(){
         // Objetivo: convertir http://mvc.local/product/show => http://mvc.local/index.php?url=product/show
         if(isset($_GET["url"]) && !empty($_GET["url"])){
@@ -42,9 +44,10 @@ class App{
         http_response_code(404);
         die("Controlador no encontrado.");
     }
-
-    //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este
+    
+    //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este    
     $controllerObject = new $controllerName; //$controllerName sera el nombre pasado con la letra mayuscula + Controller. Si el constructor es vacio no hace falta ()
+    
     if(method_exists($controllerObject, $method)){
         $controllerObject->$method($arguments); //Si arguments esta vacio lo llamara vacio, si contiene algo lo llamara con argumentos
         
