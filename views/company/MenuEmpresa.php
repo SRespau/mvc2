@@ -6,7 +6,7 @@
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     <h1>Se encuentra en la gestión de contactos de empresas.</h1>
     <ul>
-        <li>Gestionar:
+        <li>Menu
             <ul>
                 <li><a href="/company/empresaNueva">Nuevo Contacto</a></li>
                 <li><a href="/company/eliminarEmpresa">Eliminar contacto</a></li>

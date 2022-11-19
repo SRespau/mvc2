@@ -1,5 +1,6 @@
 <?php
 
+
 class PeopleController{
 
     function __construct(){
@@ -34,8 +35,8 @@ class PeopleController{
         $nombre = $_POST["nombre"];
         $apellidos = $_POST["apellidos"];
         $direccion = $_POST["direccion"];
-        $telefono = $_POST["telefono"];       
-                
+        $telefono = $_POST["telefono"];         
+        
         $busqueda = "SELECT * FROM persona WHERE Nombre ='" . strtoupper($nombre) . "' and Apellidos='" . strtoupper($apellidos) . "'";
         
         if($db->query($busqueda)->rowCount() > 0){
@@ -54,7 +55,7 @@ class PeopleController{
                 echo "<br>Error al guardar el contacto en la agenda";
                 echo "<br><a href='/home/agenda'>Volver a agenda </a>";
             }
-        }  
+        } 
         
     }
 

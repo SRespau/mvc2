@@ -11,7 +11,12 @@ class HomeController{
     }
 
     function agenda(){
-        require "../views/agenda.php";
+        session_start();
+        if(isset($_SESSION["credenciales"])){
+            require "../views/agenda.php";
+        }else{
+            header("Location: ../login");
+        }        
     }
 
 }//Fin clase home
