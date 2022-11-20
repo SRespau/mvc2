@@ -15,7 +15,7 @@
         
         <fieldset style="background-color: #eeeeee;">
             <legend style="background-color: gray; color: white; padding: 5px 10px;">Datos a modificar</legend>
-            <label for="nombre">Nombre nueva:</label>
+            <label for="nombre">Nombre nuevo:</label>
             <input type="text" id="nombre" name="nombre" style="margin: 5px" ><br><br> 
             <label for="apellidos">Apellidos nuevos:</label>
             <input type="apellidos" id="apellidos" name="apellidos" style="margin: 5px" ><br><br>           

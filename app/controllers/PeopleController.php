@@ -140,7 +140,7 @@ class PeopleController{
             $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "'";        
             
         }else{
-            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos='" . $apellidosBuscar . "'";
+            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos LIKE '" . $apellidosBuscar . "%'";
         }        
             
         if($db->query($busqueda)->rowCount() > 0){

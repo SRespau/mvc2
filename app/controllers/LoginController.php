@@ -9,7 +9,7 @@ class LoginController {
     function index(){
         session_start();
         if(isset($_SESSION["credenciales"])){
-            header("Location: ../home");
+            require "../views/login/logeado.php";            
         }else{
             require "../views/login/login.php";
         }        
