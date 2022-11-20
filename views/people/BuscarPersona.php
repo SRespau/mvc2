@@ -6,7 +6,7 @@
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     <h1>Buscar persona en agenda</h1>
 
-    <form action="show" method="post">       
+    <form action="#" method="get">       
         
         <fieldset style="background-color: #eeeeee;">
             <legend style="background-color: gray; color: white; padding: 5px 10px;">Persona a buscar</legend>
@@ -18,6 +18,13 @@
         </fieldset>
 
     </form>
+    
+    <?php
+        if(isset($_GET["envio"])){
+            PeopleController::showOne($_GET["nombre"], $_GET["apellidos"]);                                    
+        }   
+    ?>
+
     <?php require __DIR__ . "/../../app/views/footer.php" ?>
 </body>
 </html>

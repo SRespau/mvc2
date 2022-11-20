@@ -6,7 +6,7 @@
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     <h1>Buscar empresa en agenda</h1>
 
-    <form action="show" method="post">       
+    <form action="#" method="get">       
         
         <fieldset style="background-color: #eeeeee;">
             <legend style="background-color: gray; color: white; padding: 5px 10px;">Empresa a buscar</legend>
@@ -16,6 +16,11 @@
         </fieldset>
 
     </form>
+    <?php
+        if(isset($_GET["envio"])){
+            CompanyController::showOne($_GET["rSocial"]);                  
+        }   
+    ?>
     <?php require __DIR__ . "/../../app/views/footer.php" ?>
 </body>
 </html>

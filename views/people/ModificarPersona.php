@@ -6,13 +6,25 @@
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     <h1>Modificar datos contacto persona</h1>
 
-    <form action="modificar" method="post">
-        <h4>Datos de la persona a modificar:</h4>
+    <form action="#" method="get">
+    <h4>Datos de la persona a modificar:</h4>
         <label for="nombreModificar">Nombre:</label>
         <input type="text" id="nombreModificar" name="nombreModificar" style="margin: 5px" required><br><br>
         <label for="apellidosModificar">Apellidos:</label>
         <input type="text" id="apellidosModificar" name="apellidosModificar" style="margin: 5px" required><br><br>
-        
+        <input type="submit" value="Comprobar contacto" name="envio" style="margin: 5px">
+    </form>
+   
+    <?php
+        if(isset($_GET["envio"])){
+            PeopleController::showOne($_GET["nombreModificar"], $_GET["apellidosModificar"]);
+        }   
+    ?>
+
+    <form action="modificar" method="post">        
+        <input type="text" id="nombreModificar" value="<?= $_GET["nombreModificar"]?>" name="nombreModificar" style="margin: 5px" hidden>
+        <input type="text" id="apellidosModificar" value="<?= $_GET["apellidosModificar"]?>" name="apellidosModificar" style="margin: 5px" hidden>
+
         <fieldset style="background-color: #eeeeee;">
             <legend style="background-color: gray; color: white; padding: 5px 10px;">Datos a modificar</legend>
             <label for="nombre">Nombre nuevo:</label>
