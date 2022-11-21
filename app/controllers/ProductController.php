@@ -14,14 +14,14 @@ class ProductController{
     
     function index(){ //Por defecto se crean en public los metodos
         $products = \Product::all(); //Se pone \Product porque está en el namespace global
-        require "../views/homeProduct.php";        
+        require "../app/views/homeProduct.php";        
         // Metodo home de Controller de mvc00
     }
 
     function show($arguments){
         $id = $_GET["id"];
         $product = \Product::find($id);
-        require("../views/showProduct.php");
+        require("../app/views/showProduct.php");
     }
     
 }//Fin clase

@@ -1,6 +1,7 @@
 <?php
 
-//namespace App\Controllers; No hace falta porque está en el namespace global. Se pondria \Productn en ProductController
+ // namespace App\Controllers;   No hace falta porque está en el namespace global. Se pondria \Product en ProductController
+ //Explicación: Al estar en la carpeta raiz no haría falta namespace. Se accedería a el poniendo \Product. La "\" significa que es global
 
     //Fichero que simula el modelo con datos
     class Product{
