@@ -5,9 +5,8 @@
   <?php require __DIR__ . "/../../app/views/header.php" ?>
   
   <!-- Formulario para obtener los datos de usuario y contraseña por metodo post -->
-  <!-- Mandará a la función autenticar de app.php -->
+  <!-- Mandará a la función autenticar de app.php -->  
   
-  <!-- COMPROBAR EL ACTION -->
   <form action="login/auth" method="post"> 
     <fieldset style="background-color: #eeeeee;">
         <legend style="background-color: gray; color: white; padding: 5px 10px;">Login</legend>

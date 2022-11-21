@@ -1,3 +1,4 @@
+<!-- Header para incluir en cada HTML y mostrarlo. Incluye diferentes clases de diseño de la plantilla-->
 <header>
 <nav
     class="navbar navbar-expand-lg navbar navbar-expand-sm sticky-top navbar-dark bg-dark">

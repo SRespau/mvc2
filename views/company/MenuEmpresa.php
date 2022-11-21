@@ -4,7 +4,8 @@
 
 <body>
 <?php require __DIR__ . "/../../app/views/header.php" ?>
-    <h1>Se encuentra en la gestión de contactos de empresas.</h1>
+<!--Menú de selección de opciones a realizar para la gestión de contactos de empresas. Cada link manda a una función diferente de CompanyController -->    
+<h1>Se encuentra en la gestión de contactos de empresas.</h1>
     <ul>
         <li>Menu
             <ul>

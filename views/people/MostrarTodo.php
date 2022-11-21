@@ -5,8 +5,9 @@
 <body>
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     
-<?php
+<?php    
 
+    //Llama al metodo showTodo de PeopleController para mostrar todos los contactos por pantalla
     PeopleController::showTodo();
     echo "<br><a href='/home/agenda'>Volver a agenda </a>";
 ?>    

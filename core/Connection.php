@@ -1,5 +1,8 @@
 <?php
-    // Domain, source, name. Conexion a la base de datos
+    /**
+     * Clase Connection: encargada de entablar conexión con nuestra base de datos
+     * - Devolverá la variable necesaria para poder realizar sentencias con una conexión establecida.
+     */
     
     class Connection{
 

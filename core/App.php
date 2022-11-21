@@ -1,13 +1,19 @@
 <?php
 
+
+/**
+ * Clase App: Se encarga de todo lo relacionado con el acceso a los controladores. Irá en consonancia con el fichero .htacess para hacer las url mas amigables
+ *  - Con una condicional comprobará en la  barra de navegación si hay una url y no esta vacía.
+ *      - Si es falso, devolverá a la variable url=home, para que lo cargue en un futuro.
+ *      - Si es verdadero, devolverá a la variable la url pasada al navegador
+ *  - Tratará la url pasada por navegador quitandole los "/" y añadiendo sus datos a un array
+ *  - Cargaremos el 1º nombre del array como controlador, el 2º nombre como método y los sucesivos datos como datos a pasar al método
+ */
 class App{
 
     
     function __construct(){
-        /*
-            - Si la url no especifica ningun controlador (recurso) => asigno uno por defecto: home
-            - Si la url no especifica ningun metodo => asigno por defecto: index
-        */
+       
         if(isset($_GET["url"]) && !empty($_GET["url"])){
             $url = $_GET["url"];
         }else{
@@ -31,7 +37,8 @@ class App{
 
     // Cargamos el controlador que ha indicado el usuario
     // Verificamos que el fichero del controlador existe
-    //  - Si existe que lo cargue. Si no existe que salga un error de fichero no encontrado(404) y termine la aplicación.
+    //  - Si existe que lo cargue. 
+    //  - Si no existe que salga un error de fichero no encontrado(404) y termine la aplicación.
     $file = "../app/controllers/$controllerName" . ".php";
     
     if(file_exists($file)){
@@ -43,7 +50,8 @@ class App{
 
     //Si el controlador existe cargamos un objeto de el.
     //Buscamos si el metodo seleccionado existe.
-    //  - Si existe que lo lance. Si no existe que salga un error de "no encontrado" y termine la aplicación
+    //  - Si existe que lo lance. 
+    //  - Si no existe que salga un error de "no encontrado" y termine la aplicación
     $controllerObject = new $controllerName;
     
     if(method_exists($controllerObject, $method)){

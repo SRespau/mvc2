@@ -1,4 +1,4 @@
 <?php
-    // Inicio de la aplicación. Añadirá el codigo de app.php, creará un objeto con el constructor App y luego correra la función run();
+    // Inicio de la aplicación. Cargará la vista start para comenzar la aplicación
     require "../start.php";
 ?>

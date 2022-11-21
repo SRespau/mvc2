@@ -16,10 +16,21 @@
     </form>
    
     <?php
+        /**
+         * Comprobará si se ha puslsado el botón envio en GET del html
+         * - Llamará a la función estatica de PeopleController showOne y le mandará el dato introducido por el usuario
+         * - Mostrará los resultados en la misma página HTML
+         */
+
         if(isset($_GET["envio"])){
             PeopleController::showOne($_GET["nombreModificar"], $_GET["apellidosModificar"]);
         }   
     ?>
+
+    <!--Con los datos del contacto visibles en la página podrá saber que datos desea modificar el usuario -->
+    <!--El formulario contará con un input hidden al que se le pasará como valor el dato introducido en el formulario anterior -->
+    <!--Una vez los campos rellenos y puslado enviar, mandara la información al método "modificar" de CompanyController -->
+    <form action="modificar" method="post">
 
     <form action="modificar" method="post">        
         <input type="text" id="nombreModificar" value="<?= $_GET["nombreModificar"]?>" name="nombreModificar" style="margin: 5px" hidden>

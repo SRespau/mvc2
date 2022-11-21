@@ -7,8 +7,7 @@ session_start();
 <body>
   <?php require __DIR__ . "/../../app/views/header.php" ?>
   
-  <!-- Formulario para obtener los datos de usuario y contraseña por metodo post -->
-  <!-- Mandará a la función autenticar de app.php -->
+  <!--Vista panel de control del usuario. Aparecerá esta vista en el botón login cuando un usuario se haya logeado con éxito --> 
   
     <h1>Panel de control de usuarios de </h1>
     <fieldset style="background-color: #eeeeee;">
@@ -16,10 +15,11 @@ session_start();
         <p>Nombre usuario: <b><?= $_SESSION["credenciales"][0] ?></b></p>
         <br>
         
-        <!--Preguntar por que no lo abre al entrar en carpeta y fuera si. Si esta a nivel de start y de index la coge-->
-        <img src="../files/userPicture/fotoPerfilnormaluser.jpeg" width="200" height="267" alt="mo">
-        <img src="fotoPerfilnormaluser.jpeg" width="200" height="267" alt="me">
-               
+        
+        <!--Dispone de un input para subir una foto al usuario. Una vez subida la guardará y la mostrará en el panel de control del usuario -->
+        
+        <img src="/update/fotoPerfil<?= $_SESSION['credenciales'][0]?>.jpeg" width="200" height="267" alt="me">
+        <!--Una vez añadido un fichero lo mandará a DatosController al método subidafichero-->       
         <form action="datos/subidafichero" method="post" enctype="multipart/form-data">        
             <label for="mifich">Selecciona foto perfil: </label>            
             <input type="file" name="myfile" id="mifich" style="margin: 5px;">        

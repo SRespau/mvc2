@@ -6,6 +6,7 @@
 <?php require __DIR__ . "/../../app/views/header.php" ?>
     <h1>Añadir una empresa nueva a la agenda</h1>
 
+    <!--Formulario para añadir los datos necesarios para crear el nuevo contacto. Mandará los datos a la función insertar de CompanyController -->
     <form action="insertar" method="post">
         <fieldset style="background-color: #eeeeee;">
             <legend style="background-color: gray; color: white; padding: 5px 10px;">Datos empresa nueva</legend>

@@ -106,7 +106,7 @@ class DatosController{
      */
     function subidaFichero(){
         session_start();
-        $target_dir = "../files/userPicture/";
+        $target_dir = "update/";
         $target_file = $target_dir . basename($_FILES["myfile"]["name"]); 
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

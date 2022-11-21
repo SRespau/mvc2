@@ -219,7 +219,9 @@ class PeopleController{
      * Función showTodo: Mostrará por pantalla todos los datos de cada contacto persona de la base de datos
      * - Insertará el fichero php de conexión a la base de datos y conectará a la base de datos "agenda".
      * - Realizará la sentencia SQL SELECT para buscar todos los contactos de la tabla "persona".
-     * - Realizará un bucle foreach para recorrer el objeto PDOStatement y mostrará cada dato recibido.      
+     * - Se comprobará con una condicional si la busqueda ha dado como resultado alguna fila
+     *      - Si ha devuelto alguna fila realizará un bucle foreach para recorrer el objeto PDOStatement y mostrará cada dato recibido.
+     *      - Si NO ha devuelto ninguna fila mostrará un mensaje de error y un link para volver a la agenda     
      */
     static function showTodo(){
         require "../core/Connection.php";
