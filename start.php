@@ -15,7 +15,7 @@
 
     require_once "../core/App.php"; //Importamos el fichero
     
-    $app = new \Core\App(); //usamos la clase
+    $app = new \Core\App(); //Ruta absoluta. Ruta relativa sería Core\App porque estamos en start.php
 
     
 

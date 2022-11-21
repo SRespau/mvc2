@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models;  
 
 use PDO;
 use Core\Model;
 
 require_once '../core/Conection.php';
-//namespace App\Controllers; No hace falta porque está en el namespace global. Se pondria \Product en ProductController
 
     //Extendemos clase Model de conection
     class Product extends Model{

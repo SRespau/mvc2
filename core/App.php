@@ -45,7 +45,8 @@ class App{
         die("Controlador no encontrado.");
     }
     
-    //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este    
+    //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este
+    $controllerName = "\\App\\Controllers\\$controllerName"; //Hay que añadirle el namespace de los controladores para que pueda acceder. No se puede poner una variable en un namespace literal \App\Controller$controllerName  <-- esto no
     $controllerObject = new $controllerName; //$controllerName sera el nombre pasado con la letra mayuscula + Controller. Si el constructor es vacio no hace falta ()
     
     if(method_exists($controllerObject, $method)){
