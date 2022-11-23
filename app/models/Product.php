@@ -5,36 +5,32 @@ namespace App\Models;
 use PDO;
 use Core\Model;
 
-require_once '../core/Conection.php';
+require_once '../core/Model.php';
 
     //Extendemos clase Model de conection
-    class Product extends Model{
-        const PRODUCTS = [
-            array(1, "Cortacesped"),
-            array(2, "Pizarra"),
-            array(3, "Billar"),
-            array(4, "Dardos")
-        ];
+class Product extends Model{
+        
 
     function __construct(){
         //constructor vacio
     } 
-    /* 
-    //Devuelve todos los productos
-    public static function all(){ //static -> función que pertenece a la clase, no al objeto
-        return Product::PRODUCTS; //Devolvemos de la clase product la constante PRODUCT. :: por ser estatico
-    }        
-     
-    //Devuelve un producto en particular buscado por la clave del array
-    public static function find($id){        
-        return Product::PRODUCTS[$id - 1];
-    }
-    */
+    
     public static function all(){
-        return Product::PRODUCTS; 
+        $db = Product::db();
+        $statement = $db->query('SELECT * FROM products');
+        $products = $statement->fetchAll(PDO::FETCH_CLASS, Product::class);
+
+        return $products;
     }
-    public static function find($id){
-        return Product::PRODUCTS[$id - 1]; 
+
+    public static function find($id)
+    {
+        $db = Product::db();
+        $stmt = $db->prepare('SELECT * FROM products WHERE id=:id');
+        $stmt->execute(array(':id' => $id));
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Product::class);
+        $products = $stmt->fetch(PDO::FETCH_CLASS);
+        return $products;
     }
 
     public function delete(){
@@ -47,4 +43,4 @@ require_once '../core/Conection.php';
 
 
 
-    }// FIN_CLASE
+}// FIN_CLASE

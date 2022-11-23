@@ -7,10 +7,8 @@ require_once "../config/db.php";
 use const Config\DSN;
 use const Config\USER;
 use const Config\PASSWORD;
-
 //necesario para referirnos a ella
 use PDO;
-
 
 class Model{
 

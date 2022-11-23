@@ -5,18 +5,31 @@
 </head>
 <body>
     <?php require "../app/views/header.php" ?> 
-    <h1>Inventario de Productos</h1>
-    <table>
-        <?php foreach($products as $item): ?> <!-- para ver el foreach mas claro se quitan las llaves, se pone : y al final se pone endforeach;-->
+    <h1>Lista de usuarios</h1>
+
+    <table class="table table-striped table-hover">
         <tr>
-            <!-- Al ser array de arrays, del primer elemento array cogemos la posición 0 y 1 -->
-            <td>Identificador: <?= $item[0] ?></td> <!-- ?= es lo mismo que echo -->
-            <td>Descripción: <?= $item[1] ?> </td> 
-            <td><a href="show/?id=<?= $item[0] ?>">Ver detalle producto</a></td>              
-            
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Type Id</th>
+            <th>Precio</th>
+            <th>Fecha Compra</th>
+            <th></th>
         </tr>
-        <?php endforeach; ?>
-    </table>
+
+    <?php foreach ($products as $key => $product) { ?>
+        <tr>
+            <td><?php echo $product->id ?></td>
+            <td><?php echo $product->name ?></td>
+            <td><?php echo $product->type_id ?></td>
+            <td><?php echo $product->price ?></td>
+            <td><?php echo $product->fecha_compra ?></td>
+            <td>
+                <a href="/user/show/<?php echo $product->id ?>" class="btn btn-primary">Ver </a>
+            </td>
+        </tr>
+  <?php } ?>
+</table>
 
     <?php require "../app/views/footer.php" ?>
     
