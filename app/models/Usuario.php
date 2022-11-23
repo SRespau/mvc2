@@ -5,7 +5,7 @@ namespace App\Models;
 use PDO;
 use Core\Model;
 
-require_once '../core/Model.php';
+//require_once '../core/Model.php'; //Al tener el autoload.php no hace falta hacer el require_once. El fichero ya lo hace para todo
 
 
 
