@@ -5,7 +5,7 @@
 
     //3-> Use <clase> (utilizar:instancias)
 
-    use \Core\App; // Cogerá el namespace de App. Con esto nos evitamos poner abajo $app = new \Core\App();
+    use \Core\App; // Cogerá el namespace de App. Con esto nos evitamos poner abajo $app = new \Core\App
 
     //echo "<h2> Contenido PRIVADO</h2>";
 
