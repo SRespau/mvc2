@@ -8,10 +8,10 @@
 <body>
     <h1>Detalle del producto <?php echo $product->id ?></h1>
         <ul>
-            <li><strong>Nombre: </strong><?php echo $user->name ?></li>
-            <li><strong>Apellidos: </strong><?php echo $user->surname ?></li>
-            <li><strong>Email: </strong><?php echo $user->email ?></li>
-            <li><strong>F. nacimiento: </strong><?php echo $user->birthdate ?></li>
+            <li><strong>ID: </strong><?php echo $product->id ?></li>
+            <li><strong>Nombre: </strong><?php echo $product->name ?></li>
+            <li><strong>Precio: </strong><?php echo $product->price ?></li>
+            <li><strong>Fecha compra: </strong><?php echo $product->fecha_compra->format('Y-m-d') ?></li>
         </ul>
 </body>
 </html>
