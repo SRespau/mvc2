@@ -18,7 +18,7 @@ session_start();
         
         <!--Dispone de un input para subir una foto al usuario. Una vez subida la guardará y la mostrará en el panel de control del usuario -->
         
-        <img src="/update/fotoPerfil<?= $_SESSION['credenciales'][0]?>.jpeg" width="200" height="267" alt="me">
+        <img src="/update/fotoPerfil<?= $_SESSION['credenciales'][0]?>.jpeg" width="200" height="267" alt="foto usuario">
         <!--Una vez añadido un fichero lo mandará a DatosController al método subidafichero-->       
         <form action="datos/subidafichero" method="post" enctype="multipart/form-data">        
             <label for="mifich">Selecciona foto perfil: </label>            
