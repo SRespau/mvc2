@@ -56,25 +56,29 @@ class PeopleController{
         $direccion = $_POST["direccion"];
         $telefono = $_POST["telefono"];         
         
-        $busqueda = "SELECT * FROM persona WHERE Nombre ='" . strtoupper($nombre) . "' and Apellidos='" . strtoupper($apellidos) . "'";
+        try{
+            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . strtoupper($nombre) . "' and Apellidos='" . strtoupper($apellidos) . "'";
         
-        if($db->query($busqueda)->rowCount() > 0){
-            echo "Contacto ya existe. Por favor, escriba nombre y apellidos diferente";
-            echo "<a href='/home/agenda'>Volver a agenda </a>";
-        }else{
-            $sql = "INSERT INTO persona VALUES ('" . strtoupper($nombre) . "', '" . strtoupper($apellidos) . "', '" . strtoupper($direccion) . "', " . $telefono . ");";
-            $registros = $db->query($sql);
-        
-            if($registros->rowCount() > 0){                
-                echo "<br>Contacto guardado con éxito en la agenda."; 
-                echo "<br>Datos insertados: " . $registros->rowCount();
-                echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
+            if($db->query($busqueda)->rowCount() > 0){
+                echo "Contacto ya existe. Por favor, escriba nombre y apellidos diferente";
+                echo "<a href='/home/agenda'>Volver a agenda </a>";
             }else{
-                echo "<br>Error al guardar el contacto en la agenda";
-                echo "<br><a href='/home/agenda'>Volver a agenda </a>";
-            }
-        } 
+                $sql = "INSERT INTO persona VALUES ('" . strtoupper($nombre) . "', '" . strtoupper($apellidos) . "', '" . strtoupper($direccion) . "', " . $telefono . ");";
+                $registros = $db->query($sql);
         
+                if($registros->rowCount() > 0){                
+                    echo "<br>Contacto guardado con éxito en la agenda."; 
+                    echo "<br>Datos insertados: " . $registros->rowCount();
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
+                }else{
+                    echo "<br>Error al guardar el contacto en la agenda";
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";
+                }
+            } 
+        }catch(PDOException $p){  
+            echo "Algún campo rellenado erroneo,vuelve a intentarlo.";
+            echo "<br><a href='/home/agenda'>Volver a agenda </a>";
+        }
     }
 
     /**
@@ -126,51 +130,56 @@ class PeopleController{
         $nombreBuscar = strtoupper($_POST["nombreModificar"]);
         $apellidosBuscar = strtoupper($_POST["apellidosModificar"]);        
         
-        $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos='" . $apellidosBuscar . "'";
+        try{
+            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos='" . $apellidosBuscar . "'";
         
-        foreach ($db->query($busqueda) as $dato) {
-           $nombre = $dato[0];           
-           $apellidos = $dato[1];           
-           $direccion = $dato[2];
-           $telefono = $dato[3];                       
-        }
-       
-        if($_POST["nombre"] != ""){
-            $nombre = strtoupper($_POST["nombre"]);
-            $contador++;
-        }
-
-        if($_POST["apellidos"] != ""){
-            $apellidos = strtoupper($_POST["apellidos"]);
-            $contador++;
-        }
-
-        if($_POST["direccion"] != ""){
-            $direccion = strtoupper($_POST["direccion"]);
-            $contador++;
-        }
-
-        if($_POST["telefono"] != ""){
-            $telefono = $_POST["telefono"];
-            $contador++;
-        }
-       
-        if($_POST["nombre"] == "" && $_POST["apellidos"] == "" && $_POST["direccion"] == "" && $_POST["telefono"] == ""){
-            echo "Campos de datos a modificar vacíos. Rellena al menos un campo.";
-            echo "<br><a href='/people/modificarPersona'>Volver atrás</a>";
-        }else{       
-        $sql = "UPDATE persona SET Nombre='" . $nombre . "', Apellidos='" . $apellidos . "', Direccion ='" . $direccion . "', Telefono=" . $telefono . " WHERE Nombre ='" . $nombreBuscar . "' and Apellidos='" . $apellidosBuscar . "'"; 
-        $registros = $db->query($sql);        
-
-            if($registros->rowCount() > 0){                
-                echo "<br>Contacto modificado con éxito de la agenda."; 
-                echo "<br>Datos modificados: " . $contador; 
-                echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
-            }else{
-                echo "<br>Error al modificar el contacto de la agenda. El contacto no existe o está mal escrito.";
-                echo "<br><a href='/people/modificarPersona'>Volver atrás</a>";
+            foreach ($db->query($busqueda) as $dato) {
+                $nombre = $dato[0];           
+                $apellidos = $dato[1];           
+                $direccion = $dato[2];
+                $telefono = $dato[3];                       
             }
-        }
+       
+            if($_POST["nombre"] != ""){
+                $nombre = strtoupper($_POST["nombre"]);
+                $contador++;
+            }
+
+            if($_POST["apellidos"] != ""){
+                $apellidos = strtoupper($_POST["apellidos"]);
+                $contador++;
+            }
+
+            if($_POST["direccion"] != ""){
+                $direccion = strtoupper($_POST["direccion"]);
+                $contador++;
+            }
+
+            if($_POST["telefono"] != ""){
+                $telefono = $_POST["telefono"];
+                $contador++;
+            }
+       
+            if($_POST["nombre"] == "" && $_POST["apellidos"] == "" && $_POST["direccion"] == "" && $_POST["telefono"] == ""){
+                echo "Campos de datos a modificar vacíos. Rellena al menos un campo.";
+                echo "<br><a href='/people/modificarPersona'>Volver atrás</a>";
+            }else{       
+                $sql = "UPDATE persona SET Nombre='" . $nombre . "', Apellidos='" . $apellidos . "', Direccion ='" . $direccion . "', Telefono=" . $telefono . " WHERE Nombre ='" . $nombreBuscar . "' and Apellidos='" . $apellidosBuscar . "'"; 
+                $registros = $db->query($sql);        
+
+                if($registros->rowCount() > 0){                
+                    echo "<br>Contacto modificado con éxito de la agenda."; 
+                    echo "<br>Datos modificados: " . $contador; 
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
+                }else{
+                    echo "<br>Error al modificar el contacto de la agenda. El contacto no existe o está mal escrito.";
+                    echo "<br><a href='/people/modificarPersona'>Volver atrás</a>";
+                }
+            }
+        }catch(PDOException $p){  
+            echo "Algún campo rellenado erroneo,vuelve a intentarlo.";
+            echo "<br><a href='/home/agenda'>Volver a agenda </a>";
+    }
     }
 
     /**
@@ -195,13 +204,13 @@ class PeopleController{
             $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "'";        
             
         }else{
-            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos LIKE '" . $apellidosBuscar . "%'";
+            $busqueda = "SELECT * FROM persona WHERE Nombre ='" . $nombreBuscar . "' and Apellidos = '" . $apellidosBuscar . "'";
         }  
                    
         if($db->query($busqueda)->rowCount() > 0){
             $contador = 1;           
             foreach ($db->query($busqueda) as $dato) {
-                echo "Datos del contacto: " . $contador;
+                echo "<b>Datos del contacto:</b> " . $contador;
                 echo "<br>Nombre -> " . $dato[0];
                 echo "<br>Apellidos -> " . $dato[1];
                 echo "<br>Dirección -> " . $dato[2];
@@ -233,7 +242,7 @@ class PeopleController{
         if($db->query($busqueda)->rowCount() > 0){            
             $contador = 1;
             foreach ($db->query($busqueda) as $dato) {
-                echo "Contacto: " . $contador;
+                echo "<b>Contacto: " . $contador . "</b>";
                 echo "<br>Nombre -> " . $dato[0];
                 echo "<br>Apellidos -> " . $dato[1];
                 echo "<br>Dirección -> " . $dato[2];

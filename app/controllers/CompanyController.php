@@ -55,27 +55,32 @@ class CompanyController{
         $direccion = $_POST["direccion"];
         $telefono = $_POST["telefono"];
         $email = $_POST["email"];       
+        try{
+
                 
-        $busqueda = "SELECT * FROM empresas WHERE RazonSocial ='" . strtoupper($razon) . "'";
+            $busqueda = "SELECT * FROM empresa WHERE RazonSocial ='" . strtoupper($razon) . "'";
         
-        if($db->query($busqueda)->rowCount() > 0){
-            echo "Contacto ya existe. Por favor, escriba nombre diferente";
-            echo "<a href='/home/agenda'>Volver a agenda </a>";
-        }else{
-            $sql = "INSERT INTO empresas VALUES ('" . strtoupper($razon) . "', '" . strtoupper($direccion) . "', " . $telefono . ", '" . strtoupper($email) . "');";
-            $registros = $db->query($sql);
-        
-            if($registros->rowCount() > 0){
-                //require "../views/agenda.php"; //Lo mejor sería redireccionar despues del mensaje
-                echo "<br>Contacto guardado con éxito en la agenda."; 
-                echo "<br>Datos insertados: " . $registros->rowCount(); //Devolvera el numero de registros de la consulta
-                echo "<a href='/home/agenda'>Volver a agenda </a>";            
-            }else{
-                echo "<br>Error al guardar el contacto en la agenda";
+            if($db->query($busqueda)->rowCount() > 0){
+                echo "Contacto ya existe. Por favor, escriba nombre diferente";
                 echo "<a href='/home/agenda'>Volver a agenda </a>";
-            }
-        }  
+            }else{
+                $sql = "INSERT INTO empresa VALUES ('" . strtoupper($razon) . "', '" . strtoupper($direccion) . "', " . $telefono . ", '" . strtoupper($email) . "');";
+                $registros = $db->query($sql);
         
+                if($registros->rowCount() > 0){
+                    //require "../views/agenda.php"; //Lo mejor sería redireccionar despues del mensaje
+                    echo "<br>Contacto guardado con éxito en la agenda."; 
+                    echo "<br>Datos insertados: " . $registros->rowCount(); //Devolvera el numero de registros de la consulta
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
+                }else{
+                    echo "<br>Error al guardar el contacto en la agenda";
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";
+                }
+            }
+        }catch(PDOException $p){  
+            echo "Algún campo rellenado erroneo,vuelve a intentarlo.";
+            echo "<br><a href='/home/agenda'>Volver a agenda </a>";
+        }
     }
 
     /**
@@ -91,7 +96,7 @@ class CompanyController{
 
         $razon = strtoupper($_GET["rSocial"]);
 
-        $sql = "DELETE FROM empresas WHERE RazonSocial = '" . $razon . "';";
+        $sql = "DELETE FROM empresa WHERE RazonSocial = '" . $razon . "';";
         $registros = $db->query($sql);
 
         if($registros->rowCount() > 0){            
@@ -123,52 +128,58 @@ class CompanyController{
         $db = Connection::db();
 
         $razonBuscar = strtoupper($_POST["rSocialModificar"]);                
-        
-        $busqueda = "SELECT * FROM empresas WHERE RazonSocial ='" . $razonBuscar . "'";
-        
-        foreach ($db->query($busqueda) as $dato) {
-           $razon = $dato[0];
-           $direccion = $dato[1];
-           $telefono = $dato[2];
-           $email = $dato[3];            
-        }
        
-        if($_POST["rSocial"] != ""){
-            $razon = $_POST["rSocial"];
-            $contador++;
-        }
-
-        if($_POST["direccion"] != ""){
-            $direccion = $_POST["direccion"];
-            $contador++;
-        }
-
-        if($_POST["telefono"] != ""){
-            $telefono = $_POST["telefono"];
-            $contador++;
-        }
-
-        if($_POST["email"] != ""){
-            $email = $_POST["email"];
-            $contador++;
-        }
+        try {
         
-        if($_POST["rSocial"] == "" && $_POST["direccion"] == "" && $_POST["telefono"] == "" && $_POST["email"] == ""){
-            echo "Campos de datos a modificar vacíos. Rellena al menos un campo.";
-            echo "<br><a href='/company/modificarEmpresa'>Volver atrás</a>";
-        }else{ 
-
-        $sql = "UPDATE empresas SET RazonSocial='" . strtoupper($razon) . "', Direccion='" . strtoupper($direccion) . "', Telefono =" . $telefono . ", Email='" . strtoupper($email) . "' WHERE RazonSocial='" . $razonBuscar . "'"; 
-        $registros = $db->query($sql);
-       
-            if($registros->rowCount() > 0){                
-                echo "<br>Contacto modificado con éxito de la agenda."; 
-                echo "<br>Datos modificados: " . $contador;
-                echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
-            }else{
-                echo "<br>Error al modificar el contacto de la agenda. El contacto no existe o está mal escrito.";
-                echo "<br><a href='/company/modificarEmpresa'>Volver atrás</a>";
+            $busqueda = "SELECT * FROM empresa WHERE RazonSocial ='" . $razonBuscar . "'";
+        
+            foreach ($db->query($busqueda) as $dato) {
+                $razon = $dato[0];
+                $direccion = $dato[1];
+                $telefono = $dato[2];
+                $email = $dato[3];            
             }
+       
+            if($_POST["rSocial"] != ""){
+                $razon = $_POST["rSocial"];
+                $contador++;
+            }
+
+            if($_POST["direccion"] != ""){
+                $direccion = $_POST["direccion"];
+                $contador++;
+            }
+
+            if($_POST["telefono"] != ""){
+                $telefono = $_POST["telefono"];
+                $contador++;
+            }
+
+            if($_POST["email"] != ""){
+                $email = $_POST["email"];
+                $contador++;
+            }
+        
+            if($_POST["rSocial"] == "" && $_POST["direccion"] == "" && $_POST["telefono"] == "" && $_POST["email"] == ""){
+                echo "Campos de datos a modificar vacíos. Rellena al menos un campo.";
+                echo "<br><a href='/company/modificarEmpresa'>Volver atrás</a>";
+            }else{ 
+
+            $sql = "UPDATE empresa SET RazonSocial='" . strtoupper($razon) . "', Direccion='" . strtoupper($direccion) . "', Telefono =" . $telefono . ", Email='" . strtoupper($email) . "' WHERE RazonSocial='" . $razonBuscar . "'"; 
+            $registros = $db->query($sql);
+       
+                if($registros->rowCount() > 0){                
+                    echo "<br>Contacto modificado con éxito de la agenda."; 
+                    echo "<br>Datos modificados: " . $contador;
+                    echo "<br><a href='/home/agenda'>Volver a agenda </a>";            
+                }else{
+                    echo "<br>Error al modificar el contacto de la agenda. El contacto no existe o está mal escrito.";
+                    echo "<br><a href='/company/modificarEmpresa'>Volver atrás</a>";
+                }
+            }
+        }catch(PDOException $p){  
+            echo "Algún campo rellenado erroneo,vuelve a intentarlo.";
+            echo "<br><a href='/home/agenda'>Volver a agenda </a>";
         }
     }
 
@@ -177,6 +188,7 @@ class CompanyController{
      * - Insertará el fichero php de conexión a la base de datos y conectará a la base de datos "agenda".
      * - Obtendrá el dato que le han enviado y lo transformará a mayúsculas.
      * - Realizará la sentencia SQL SELECT con el dato enviado para buscarlo en la tabla "empresa".
+     * - Buscará por la palabra insertada. Devolverá 1 registro si se pone nombre completo de la agenda o devolverá varios si se llaman igual.
      * - Realizará un bucle foreach para recorrer el objeto PDOStatement y mostrará por pantalla cada dato recibido.      
      */
     static function showOne($rSocial){
@@ -186,15 +198,16 @@ class CompanyController{
 
         $razonBuscar = strtoupper($rSocial);
                 
-        $busqueda = "SELECT * FROM empresas WHERE RazonSocial ='" . $razonBuscar . "'";
+        $busqueda = "SELECT * FROM empresa WHERE RazonSocial = '" . $razonBuscar . "'";
         
         if($db->query($busqueda)->rowCount() > 0){
             foreach ($db->query($busqueda) as $dato) {            
-            echo "<br>Datos del contacto:<br>"; 
+            echo "<br><b>Datos del contacto:</b><br>"; 
             echo "<br>Razón Social -> " . $dato[0];
             echo "<br>Dirección -> " . $dato[1];
             echo "<br>Teléfono -> " . $dato[2];
             echo "<br>Email -> " . $dato[3];
+            echo "<br>";
             }                        
         }else{
             echo "<br>Contacto no encontrado";            
@@ -204,7 +217,7 @@ class CompanyController{
     /**
      * Función showTodo: Mostrará por pantalla todos los datos de cada contacto empresa de la base de datos
      * - Insertará el fichero php de conexión a la base de datos y conectará a la base de datos "agenda".
-     * - Realizará la sentencia SQL SELECT para buscar todos los contactos de la tabla empresas.
+     * - Realizará la sentencia SQL SELECT para buscar todos los contactos de la tabla empresa.
      * - Realizará un bucle foreach para recorrer el objeto PDOStatement y mostrará cada dato recibido.      
      */
     static function showTodo(){
@@ -212,12 +225,12 @@ class CompanyController{
         
         $db = Connection::db();      
                 
-        $busqueda = "SELECT * FROM empresas";
+        $busqueda = "SELECT * FROM empresa";
                 
         if($db->query($busqueda)->rowCount() > 0){            
             $contador = 1;
             foreach ($db->query($busqueda) as $dato) {
-                echo "Datos del contacto: " . $contador;
+                echo "<b>Datos del contacto: " . $contador . "</b>";
                 echo "<br>Razón Social -> " . $dato[0];
                 echo "<br>Dirección -> " . $dato[1];
                 echo "<br>Teléfono -> " . $dato[2];

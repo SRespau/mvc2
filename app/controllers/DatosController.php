@@ -64,12 +64,12 @@ class DatosController{
                     $telefono = $data->telefono; 
                     $email = $this->replace($data->email);      
                     
-                    $busqueda = "SELECT * FROM empresas WHERE RazonSocial ='" . strtoupper($razon) . "' and Direccion ='" . strtoupper($direccion) . "' and Telefono=" . $telefono . " and Email='" . strtoupper($email) . "'";
+                    $busqueda = "SELECT * FROM empresa WHERE RazonSocial ='" . strtoupper($razon) . "' and Direccion ='" . strtoupper($direccion) . "' and Telefono=" . $telefono . " and Email='" . strtoupper($email) . "'";
         
                     if($db->query($busqueda)->rowCount() > 0){
 
                     }else{
-                    $sql = "INSERT INTO empresas VALUES ('" . strtoupper($razon) . "', '" . strtoupper($direccion) . "', " . $telefono . ", '" . strtoupper($email) . "');";
+                    $sql = "INSERT INTO empresa VALUES ('" . strtoupper($razon) . "', '" . strtoupper($direccion) . "', " . $telefono . ", '" . strtoupper($email) . "');";
                     $db->query($sql);
                     }
                 }
@@ -116,7 +116,7 @@ class DatosController{
             $check = getimagesize($_FILES["myfile"]["tmp_name"]);
 
             if($check !== false){
-                if ($_FILES["myfile"]["size"] > 5000000) {
+                if ($_FILES["myfile"]["size"] > 5242880) {
                     echo "Lo siento, fichero mayor que 5mb.";
                     $uploadOk = 0;
                 }else{
@@ -136,7 +136,7 @@ class DatosController{
             echo "<br>Lo siento, tu archivo no se ha subido.";
             echo "<br><a href='/login'>Volver al panel de control </a>";
           
-          } else {
+          } else {            
             
             if (move_uploaded_file($_FILES["myfile"]["tmp_name"], $target_file)) {
                 

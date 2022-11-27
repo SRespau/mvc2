@@ -16,7 +16,7 @@
             <input type="text" id="apellidos" name="apellidos" style="margin: 5px" required><br><br>           
             <label for="direccion">Dirección:</label>
             <input type="text" id="direccion" name="direccion" style="margin: 5px" ><br><br>
-            <label for="birthday">Teléfono:</label>
+            <label for="telefono">Teléfono:</label>
             <input type="number" id="telefono" name="telefono" style="margin: 5px" required><br><br>            
             <input type="submit" value="Enviar" name="envio" style="margin: 5px">
         </fieldset>
