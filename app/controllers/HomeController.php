@@ -1,21 +1,17 @@
 <?php
-
 namespace App\Controllers;
-
-class HomeController{
+/**
+*
+*/
+class HomeController
+{
 
     function __construct(){
-        
-        //Constructor vacio
-    }    
-
-    function index(){
-        require "../app/views/home.php";
+         //echo "En HomeController";
     }
 
-    function show(){
-        echo "<br>Dentro de show de HomeController";
-    }   
-
-
-}//Fin clase home
+    public function index(){
+        // echo "<p>En Index()</p>";
+        require "../app/views/home.php";
+    }
+}

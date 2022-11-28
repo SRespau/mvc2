@@ -1,61 +1,48 @@
 <?php
-
 namespace Core;
 
-/*
-    - Si la url no especifica ningun controlador (recurso) => asigno uno por defecto: home
-    - Si la url no especifica ningun metodo => asigno por defecto: index
-*/
-class App{
+class App
+{
 
-    
-    function __construct(){
-        // Objetivo: convertir http://mvc.local/product/show => http://mvc.local/index.php?url=product/show
-        if(isset($_GET["url"]) && !empty($_GET["url"])){
-            $url = $_GET["url"];
-        }else{
-            $url = "home";
+    function __construct()
+    {
+        // echo "Clase App<br>";
+
+        if (isset($_GET['url'])) {
+            $url = $_GET['url'];
+        } else {
+            $url = 'home';
         }
-    // le va a llegar /product/show/5 -> product: recurso;   show: accion/metodo;    5: parametro
-    //explode -> Separa una cadena en subcadenas mediante un caracter separador
-    //Trim -> elimina el caracter del inicio y final de la cadena. Queremos eliminar las "/" del comienzo y del final
-    $arguments = explode('/', trim($url, '/')); //explode -> Devuelve array de strings
-    $controllerName = array_shift($arguments); //array_shift -> Extrae el primer valor del array y lo elimina de este
-    //Transformamos  product -> ProductController
-    $controllerName = ucwords($controllerName) . "Controller"; // ucwords -> convierte la primera letra en mayuscula   
-    
-    //Verificar que ese array tiene más elementos. Quizá solo nos han puesto el recurso y nada más
-    if(count($arguments) > 0){
-        $method = array_shift($arguments); //Obtenemos el metodo si hubiera más recursos en la array
 
-    }else{
-        $method = "index";
-    }
-    //var_dump($arguments);
+        // vamos a usar la url de la siguiente manera:
+        //   controlador/metodo/argumentos
 
-    
-    // Voy a cargar el controlador -> ProductController.php (o nombre de controlador que tengamos y nos manden)
-    $file = "../app/controllers/$controllerName" . ".php";
-    //Verificamos si el fichero existe en la ruta enviada para llamar al controlador.
-    if(file_exists($file)){
-        require_once $file;// Si existe que lo cargue
-        
-    }else{
-        http_response_code(404);
-        die("Controlador no encontrado.");
-    }
-    
-    //Una vez que veamos si existe el controlador comprobamos si existe el metodo dentro de este
-    $controllerName = "\\App\\Controllers\\$controllerName"; //Hay que añadirle el namespace de los controladores para que pueda acceder. No se puede poner una variable en un namespace literal \App\Controller$controllerName  <-- esto no
-    $controllerObject = new $controllerName; //$controllerName sera el nombre pasado con la letra mayuscula + Controller. Si el constructor es vacio no hace falta ()
-    
-    if(method_exists($controllerObject, $method)){
-        $controllerObject->$method($arguments); //Si arguments esta vacio lo llamara vacio, si contiene algo lo llamara con argumentos
-        
-    }else{
-        http_response_code(404);
-        die("No encontrado.");
-    }
-    }//fin_construct
+        $arguments = explode('/', trim($url, '/'));
+        $controllerName = array_shift($arguments);
+        $controllerName = ucwords($controllerName) . "Controller";
+        if (count($arguments)) {
+            $method =  array_shift($arguments);
+        } else {
+            $method = "index";
+        }
+       
+        $file = "../app/controllers/$controllerName" . ".php";                   
+        if (file_exists($file)) {
+            require_once $file;
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            echo "No encontrado";
+            die();
+        }
 
-}//Fin_clase App
+        $controllerName = '\\App\\Controllers\\' . $controllerName;        
+        $controllerObject = new $controllerName;
+        if (method_exists($controllerName, $method)) {
+            $controllerObject->$method($arguments);
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            echo "No encontrado";
+            die();
+        }
+    }
+}

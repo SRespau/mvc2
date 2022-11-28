@@ -1,0 +1,17 @@
+{
+    "name": "alumno/ex",
+    "authors": [
+        {
+            "name": "sh",
+            "email": "sh@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Models\\": "app/models/"
+        }
+    }
+}

@@ -1,21 +1,6 @@
 <?php
-    //1-> Definir -> namespace...
+require 'vendor/autoload.php';
 
-    //2-> requerir fichero -> require "loquesea.php"  (importar la clase, los metodos)
-
-    //3-> Use <clase> (utilizar:instancias)
-
-
-    //echo "<h2> Contenido PRIVADO</h2>";
-
-    //Ir pensando en recurso/metodo/parametro
-    //  - Recurso: controlador
-    //  - Acción: metodos del controlador   $controlador->metodo();
-    //  - Parametros: parametros del metodo
-
-    require_once "../core/App.php"; //Importamos el fichero
-    
-    $app = new \Core\App(); //Ruta absoluta. Ruta relativa sería Core\App porque estamos en start.php
-
-    
-
+//echo "Inicio<br>";
+session_start();
+$app = new \Core\App();
