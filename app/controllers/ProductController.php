@@ -17,17 +17,28 @@ class ProductController{
 
     
     function index(){ //Por defecto se crean en public los metodos
-        $products = Product::all(); //Se pone \Product porque está en el namespace global
+        session_start();
+        if(isset($_SESSION["login"])){
+            $products = Product::all(); //Se pone \Product porque está en el namespace global
         require "../app/views/homeProduct.php";        
         // Metodo home de Controller de mvc00
+        }else{
+            header("Location: /login");
+        }
+        
     }
 
     function show($arguments){
-        $id = $_GET["id"];
+        if(isset($_SESSION["login"])){
+            $id = $_GET["id"];
         $product = Product::find($id);
         require("../app/views/showProduct.php");
+        }else{
+            header("Location: /login");
+        }
+        
     }
-
+    /*
     function pdf(){
         //$products = Product::all();
         $dompdf = new Dompdf();
@@ -37,5 +48,6 @@ class ProductController{
         header("Content-Disposition: inline; filename=documento.pdf");
         echo $dompdf->output();
     }
+    */
     
 }//Fin clase

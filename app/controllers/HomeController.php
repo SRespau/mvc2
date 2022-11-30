@@ -15,7 +15,9 @@ class HomeController{
 
     function show(){
         echo "<br>Dentro de show de HomeController";
-    }   
+    } 
+    
+    
 
 
 }//Fin clase home

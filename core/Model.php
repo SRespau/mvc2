@@ -10,6 +10,7 @@ use const Config\PASSWORD;
 
 //necesario para referirnos a ella
 use PDO;
+use PDOException;
 
 
 class Model{
@@ -20,7 +21,7 @@ class Model{
             $db = new PDO(DSN, USER, PASSWORD);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             echo 'Falló la conexión: ' . $e->getMessage();
         }
         return $db;
