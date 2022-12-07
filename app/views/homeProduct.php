@@ -6,7 +6,7 @@
 <body>
     <?php require "../app/views/header.php" ?> 
     <h1>Lista de productos</h1>
-
+    <a href="/product/create" class="btn btn-primary">Nuevo</a>
     <table class="table table-striped table-hover">
         <tr>
             <th>ID</th>
@@ -21,11 +21,13 @@
         <tr>
             <td><?php echo $product->id ?></td>
             <td><?php echo $product->name ?></td>
-            <td><?php echo $prouct->type->name ?></td>            
+            <td><?php echo $product->type->name ?></td>            
             <td><?php echo $product->price ?></td>
             <td><?php echo $product->fecha_compra->format("d/m/Y") ?></td>
             <td>
-                <a href="/product/show/<?php echo $product->id ?>" class="btn btn-primary">Ver </a>
+                <a href="/product/show/<?php echo $product->id ?>" class="btn btn-primary">Ver</a>
+                <a href="/product/save/<?php echo $product->id ?>" class="btn btn-primary">Editar</a>
+                <a href="/product/delete/<?php echo $product->id ?>" class="btn btn-primary">Borrar</a>
             </td>
         </tr>
   <?php } ?>

@@ -12,12 +12,18 @@
     <form method="post" action="/product/store">
 
     <div class="form-group">
-        <label>Id</label>
+        <label>Nombre</label>
         <input type="text" name="id" class="form-control">
     </div>
     <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control">
+        <label>Tipo de Producto</label>
+        <select class="custom-select" name="type_id">
+            <?php
+            foreach($productsTypes as $key => $products){?>
+            <option value="<?echo $product->id ?>"><?php echo$product->name?></option>
+            ?>
+            <?php } ?>
+        </select>
     </div>
     <div class="form-group">
         <label>Precio</label>
@@ -27,6 +33,7 @@
         <label>Fecha compra</label>
         <input type="text" name="fecha_compra" class="form-control">
     </div>
+    
 <button type="submit" class="btn btn-default">Enviar</button>
 </form>
 </body>

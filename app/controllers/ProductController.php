@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\Product;
-
+use App\Models\ProductType;
+require_once "../app/models/ProductType.php";
 require_once "../app/models/Product.php"; //Al poner namespace en Product ya coge el del mismo namespace y no hace falta poner el require
 
 
@@ -23,11 +24,11 @@ class ProductController{
         $product = Product::find($id);
         require('../app/views/showProduct.php');   
     }
-
+    /*
     //------------Funciones para insertar-------------//
     public function create(){
     require '../app/views/formularioAltaProduct.php';
-    }
+    }*/
 
     public function store(){
         $product = new Product();
@@ -67,6 +68,12 @@ class ProductController{
         $product = Product::find($id);
         $product->delete();
         header('Location:/product');
+    }
+
+
+    public function create(){
+    $types = ProductType::all;
+    require '../app/views/product/create.php';
     }
 
     
