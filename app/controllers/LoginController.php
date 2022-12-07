@@ -10,16 +10,11 @@ class LoginController{
     }
 
     function index(){
-        session_start();
-        if(isset($_SESSION["login"])){
-            header("Location: /home");
-        }else{
-            header("Location: /login");
-        }
-        
+        session_start();       
+        require "../app/views/homeLogin.php";
     }
 
-    function verificar(){
+    /*function verificar(){
         $email = $_POST["user"];
         $pass = $_POST["pass"];
         $user = new User();
@@ -44,5 +39,5 @@ class LoginController{
             header("Location: /login");
         } 
         
-    }
+    }*/
 }//Fin clase login
