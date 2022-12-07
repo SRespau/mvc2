@@ -64,6 +64,27 @@ class Product extends Model{
         return $stmt->execute(); 
     }
 
+    public function type(){
+    //un producto pertenece a un tipo:
+    $db = Product::db();
+    $statement = $db->prepare('SELECT * FROM product_types WHERE id = :id');
+    $statement->bindValue(':id', $this->type_id);
+    $statement->execute();
+
+    $statement->setFetchMode(PDO::FETCH_CLASS, ProductType::class);
+    $product_type = $statement->fetch(PDO::FETCH_CLASS);
+
+    return $product_type;
+    }
+
+    public function __get($atributoDesconocido){
+    // return "atributo $atributoDesconocido desconocido";
+    if (method_exists($this, $atributoDesconocido)) {
+        $this->$atributoDesconocido = $this->$atributoDesconocido();
+        return $this->$atributoDesconocido;
+        // echo "<hr> atributo $x <hr>";
+    }
+}
 
 
 

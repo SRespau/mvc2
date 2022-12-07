@@ -10,7 +10,8 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>ID</th>
-            <th>Nombre</th>            
+            <th>Nombre</th>
+            <th>Tipo producto</th>            
             <th>Precio</th>
             <th>Fecha Compra</th>
             <th></th>
@@ -19,7 +20,8 @@
     <?php foreach ($products as $key => $product) { ?>
         <tr>
             <td><?php echo $product->id ?></td>
-            <td><?php echo $product->name ?></td>            
+            <td><?php echo $product->name ?></td>
+            <td><?php echo $prouct->type->name ?></td>            
             <td><?php echo $product->price ?></td>
             <td><?php echo $product->fecha_compra->format("d/m/Y") ?></td>
             <td>
